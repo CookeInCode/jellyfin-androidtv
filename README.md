@@ -67,7 +67,7 @@ Look through the following graphic to see if your native language could use some
 1. Clone or download this repository
 
    ```sh
-   git clone https://github.com/jellyfin/jellyfin-androidtv.git
+   git clone https://github.com/CookeInCode/jellyfin-androidtv.git
    cd jellyfin-androidtv
    ```
 
