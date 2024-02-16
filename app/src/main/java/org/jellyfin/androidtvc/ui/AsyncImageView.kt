@@ -1,0 +1,98 @@
+package org.jellyfin.androidtvc.ui
+
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.util.AttributeSet
+import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.doOnAttach
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import coil.ImageLoader
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
+import com.vanniktech.blurhash.BlurHash
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.jellyfin.androidtvc.R
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import kotlin.math.round
+import kotlin.time.Duration.Companion.milliseconds
+
+/**
+ * An extension to the [ImageView] that makes it easy to load images from the network.
+ * The [load] function takes a url, blurhash and placeholder to asynchronously load the image
+ * using the lifecycle of the current fragment or activity.
+ */
+class AsyncImageView @JvmOverloads constructor(
+	context: Context,
+	attrs: AttributeSet? = null,
+	defStyleAttr: Int = 0,
+) : AppCompatImageView(context, attrs, defStyleAttr), KoinComponent {
+	private val lifeCycleOwner get() = findViewTreeLifecycleOwner()
+	private val styledAttributes = context.obtainStyledAttributes(attrs, R.styleable.AsyncImageView, defStyleAttr, 0)
+	private val imageLoader by inject<ImageLoader>()
+
+	/**
+	 * The duration of the crossfade when changing switching the images of the url, blurhash and
+	 * placeholder.
+	 */
+	@Suppress("MagicNumber")
+	var crossFadeDuration = styledAttributes.getInt(R.styleable.AsyncImageView_crossfadeDuration, 100).milliseconds
+
+	/**
+	 * Shape the image to a circle and remove all corners.
+	 */
+	var circleCrop = styledAttributes.getBoolean(R.styleable.AsyncImageView_circleCrop, false)
+
+	/**
+	 * Load an image from the network using [url]. When the [url] is null or returns a bad response
+	 * the [placeholder] is shown. A [blurHash] is shown while loading the image. An aspect ratio is
+	 * required when using a BlurHash or the sizing will be incorrect.
+	 */
+	fun load(
+		url: String? = null,
+		blurHash: String? = null,
+		placeholder: Drawable? = null,
+		aspectRatio: Double = 1.0,
+		blurHashResolution: Int = 32,
+	) = doOnAttach {
+		lifeCycleOwner?.lifecycleScope?.launch {
+			var placeholderOrBlurHash = placeholder
+
+			// Only show blurhash if an image is going to be loaded from the network
+			if (url != null && blurHash != null) withContext(Dispatchers.IO) {
+				val blurHashBitmap = BlurHash.decode(
+					blurHash,
+					if (aspectRatio > 1) round(blurHashResolution * aspectRatio).toInt() else blurHashResolution,
+					if (aspectRatio >= 1) blurHashResolution else round(blurHashResolution / aspectRatio).toInt(),
+				)
+				if (blurHashBitmap != null) placeholderOrBlurHash = blurHashBitmap.toDrawable(resources)
+			}
+
+			// Start loading image or placeholder
+			if (url == null) {
+				imageLoader.enqueue(ImageRequest.Builder(context).apply {
+					target(this@AsyncImageView)
+					data(placeholder)
+					if (circleCrop) transformations(CircleCropTransformation())
+				}.build())
+			} else {
+				imageLoader.enqueue(ImageRequest.Builder(context).apply {
+					val crossFadeDurationMs = crossFadeDuration.inWholeMilliseconds.toInt()
+					if (crossFadeDurationMs > 0) crossfade(crossFadeDurationMs)
+					else crossfade(false)
+
+					target(this@AsyncImageView)
+					data(url)
+					placeholder(placeholderOrBlurHash)
+					if (circleCrop) transformations(CircleCropTransformation())
+					error(placeholder)
+				}.build())
+			}
+		}
+	}
+}

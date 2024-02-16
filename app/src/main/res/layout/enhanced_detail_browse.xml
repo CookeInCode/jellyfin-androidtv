@@ -48,7 +48,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="5sp"/>
 
-    <org.jellyfin.androidtv.ui.ClockUserView
+    <org.jellyfin.androidtvc.ui.ClockUserView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/clock"
@@ -56,7 +56,7 @@
         android:layout_marginEnd="40sp"
         android:layout_alignParentEnd="true" />
 
-    <org.jellyfin.androidtv.ui.NowPlayingView
+    <org.jellyfin.androidtvc.ui.NowPlayingView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/npBug"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.jellyfin.androidtv.ui.ObservableScrollView
+    <org.jellyfin.androidtvc.ui.ObservableScrollView
         android:layout_width="160sp"
         android:layout_height="match_parent"
         android:id="@+id/channelScroller"
@@ -23,9 +23,9 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:id="@+id/channels" />
-    </org.jellyfin.androidtv.ui.ObservableScrollView>
+    </org.jellyfin.androidtvc.ui.ObservableScrollView>
 
-    <org.jellyfin.androidtv.ui.ObservableScrollView
+    <org.jellyfin.androidtvc.ui.ObservableScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/programVScroller"
@@ -34,7 +34,7 @@
         android:layout_toEndOf="@+id/channelScroller"
         android:layout_alignBottom="@+id/channelScroller">
 
-        <org.jellyfin.androidtv.ui.ObservableHorizontalScrollView
+        <org.jellyfin.androidtvc.ui.ObservableHorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/programHScroller" >
@@ -46,8 +46,8 @@
                 android:id="@+id/programRows">
 
             </LinearLayout>
-        </org.jellyfin.androidtv.ui.ObservableHorizontalScrollView>
-    </org.jellyfin.androidtv.ui.ObservableScrollView>
+        </org.jellyfin.androidtvc.ui.ObservableHorizontalScrollView>
+    </org.jellyfin.androidtvc.ui.ObservableScrollView>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         android:gravity="center"
         android:textSize="14sp" />
 
-    <org.jellyfin.androidtv.ui.ClockUserView
+    <org.jellyfin.androidtvc.ui.ClockUserView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/clock"
@@ -87,7 +87,7 @@
         android:layout_marginEnd="40sp"
         android:layout_alignParentEnd="true" />
 
-    <org.jellyfin.androidtv.ui.AsyncImageView
+    <org.jellyfin.androidtvc.ui.AsyncImageView
         android:layout_width="150sp"
         android:layout_height="150sp"
         android:id="@+id/programImage"

@@ -8,7 +8,7 @@
     android:maxWidth="250dp"
     android:padding="5dp">
 
-    <org.jellyfin.androidtv.ui.AsyncImageView
+    <org.jellyfin.androidtvc.ui.AsyncImageView
         android:id="@+id/npIcon"
         android:layout_width="35dp"
         android:layout_height="35dp"

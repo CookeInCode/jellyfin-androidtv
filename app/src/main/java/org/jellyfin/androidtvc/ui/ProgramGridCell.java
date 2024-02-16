@@ -1,0 +1,160 @@
+package org.jellyfin.androidtvc.ui;
+
+import static org.koin.java.KoinJavaComponent.get;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.jellyfin.androidtvc.R;
+import org.jellyfin.androidtvc.preference.LiveTvPreferences;
+import org.jellyfin.androidtvc.ui.livetv.LiveTvGuide;
+import org.jellyfin.androidtvc.util.InfoLayoutHelper;
+import org.jellyfin.androidtvc.util.TimeUtils;
+import org.jellyfin.androidtvc.util.Utils;
+import org.jellyfin.androidtvc.util.sdk.BaseItemExtensionsKt;
+import org.jellyfin.androidtvc.util.sdk.compat.ModelCompat;
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
+import java.util.Date;
+
+public class ProgramGridCell extends RelativeLayout implements RecordingIndicatorView {
+
+    private LiveTvGuide mActivity;
+    private TextView mProgramName;
+    private LinearLayout mInfoRow;
+    private BaseItemDto mProgram;
+    private ImageView mRecIndicator;
+    private int mBackgroundColor = 0;
+    private boolean isLast;
+    private boolean isFirst;
+
+    public ProgramGridCell(Context context, LiveTvGuide activity, BaseItemDto program, boolean keyListen) {
+        super(context);
+        initComponent((Activity) context, activity, program, keyListen);
+    }
+
+    private void initComponent(Activity context, LiveTvGuide activity, BaseItemDto program, boolean keyListen) {
+        mActivity = activity;
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View v = inflater.inflate(R.layout.program_grid_cell, this, false);
+        this.addView(v);
+
+        setFocusable(true);
+
+        mProgramName = findViewById(R.id.programName);
+        mInfoRow = findViewById(R.id.infoRow);
+        mProgramName.setText(program.getName());
+        mProgram = program;
+        mRecIndicator = findViewById(R.id.recIndicator);
+
+        setCellBackground();
+
+        if (program.getStartDate() != null && program.getEndDate() != null) {
+            Date localStart = TimeUtils.convertToLocalDate(program.getStartDate());
+            if (localStart.getTime() + 60000 < activity.getCurrentLocalStartDate()) {
+                mProgramName.setText("<< "+mProgramName.getText());
+                TextView time = new TextView(context);
+                time.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+                time.setTextSize(12);
+                time.setText(android.text.format.DateFormat.getTimeFormat(getContext()).format(TimeUtils.convertToLocalDate(program.getStartDate())));
+                mInfoRow.addView(time);
+            }
+        }
+
+        LiveTvPreferences liveTvPreferences = get(LiveTvPreferences.class);
+
+        if (liveTvPreferences.get(LiveTvPreferences.Companion.getShowNewIndicator()) && BaseItemExtensionsKt.isNew(ModelCompat.asSdk(program)) && (!liveTvPreferences.get(LiveTvPreferences.Companion.getShowPremiereIndicator()) || !Utils.isTrue(program.getIsPremiere()))) {
+            InfoLayoutHelper.addBlockText(context, mInfoRow, context.getString(R.string.lbl_new), 10, Color.GRAY, R.drawable.dark_green_gradient);
+        }
+
+        if (liveTvPreferences.get(LiveTvPreferences.Companion.getShowPremiereIndicator()) && Utils.isTrue(program.getIsPremiere())) {
+            InfoLayoutHelper.addBlockText(context, mInfoRow, context.getString(R.string.lbl_premiere), 10, Color.GRAY, R.drawable.dark_green_gradient);
+        }
+
+        if (liveTvPreferences.get(LiveTvPreferences.Companion.getShowRepeatIndicator()) && Utils.isTrue(program.getIsRepeat())) {
+            InfoLayoutHelper.addBlockText(context, mInfoRow, context.getString(R.string.lbl_repeat), 10, Color.GRAY, androidx.leanback.R.color.lb_default_brand_color);
+        }
+
+        if (program.getOfficialRating() != null && !program.getOfficialRating().equals("0")) {
+            InfoLayoutHelper.addBlockText(context, mInfoRow, program.getOfficialRating(), 10);
+        }
+
+        if (liveTvPreferences.get(LiveTvPreferences.Companion.getShowHDIndicator()) && Utils.isTrue(program.getIsHD())) {
+            InfoLayoutHelper.addBlockText(context, mInfoRow, "HD", 10);
+        }
+
+        if (program.getSeriesTimerId() != null) {
+            mRecIndicator.setImageResource(program.getTimerId() != null ? R.drawable.ic_record_series_red : R.drawable.ic_record_series);
+        } else if (program.getTimerId() != null) {
+            mRecIndicator.setImageResource(R.drawable.ic_record_red);
+        }
+
+
+        if (keyListen) {
+            setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mActivity.showProgramOptions();
+                }
+            });
+        }
+
+    }
+
+    public void setCellBackground() {
+        LiveTvPreferences liveTvPreferences = get(LiveTvPreferences.class);
+
+        if (liveTvPreferences.get(LiveTvPreferences.Companion.getColorCodeGuide())) {
+            if (Utils.isTrue(mProgram.getIsMovie())) {
+                mBackgroundColor = getResources().getColor(R.color.guide_movie_bg);
+            } else if (Utils.isTrue(mProgram.getIsNews())) {
+                mBackgroundColor = getResources().getColor(R.color.guide_news_bg);
+            } else if (Utils.isTrue(mProgram.getIsSports())) {
+                mBackgroundColor = getResources().getColor(R.color.guide_sports_bg);
+            } else if (Utils.isTrue(mProgram.getIsKids())) {
+                mBackgroundColor = getResources().getColor(R.color.guide_kids_bg);
+            }
+
+            setBackgroundColor(mBackgroundColor);
+        }
+    }
+
+    @Override
+    protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect) {
+        super.onFocusChanged(gainFocus, direction, previouslyFocusedRect);
+
+        if (gainFocus) {
+            setBackgroundColor(Utils.getThemeColor(getContext(), android.R.attr.colorAccent));
+
+            mActivity.setSelectedProgram(this);
+        } else {
+            setBackgroundColor(mBackgroundColor);
+        }
+    }
+
+    public BaseItemDto getProgram() { return mProgram; }
+
+    public void setLast() { isLast = true; }
+    public boolean isLast() { return isLast; }
+    public void setFirst() { isFirst = true; }
+    public boolean isFirst() { return isFirst; }
+
+    public void setRecTimer(String id) {
+        mProgram.setTimerId(id);
+        mRecIndicator.setImageResource(id != null ? (mProgram.getSeriesTimerId() != null ? R.drawable.ic_record_series_red : R.drawable.ic_record_red) : mProgram.getSeriesTimerId() != null ? R.drawable.ic_record_series : R.drawable.blank10x10);
+    }
+    public void setRecSeriesTimer(String id) {
+        mProgram.setSeriesTimerId(id);
+        mRecIndicator.setImageResource(id != null ? R.drawable.ic_record_series_red : R.drawable.blank10x10);
+    }
+}

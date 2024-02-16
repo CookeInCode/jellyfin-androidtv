@@ -81,7 +81,7 @@
             android:drawableStart="@drawable/ic_user_add"
             android:text="@string/add_user" />
 
-        <org.jellyfin.androidtv.ui.ServerButtonView
+        <org.jellyfin.androidtvc.ui.ServerButtonView
             android:id="@+id/server_button"
             android:layout_width="0dp"
             android:layout_height="51dp"
@@ -90,7 +90,7 @@
             android:padding="0dp" />
     </LinearLayout>
 
-    <org.jellyfin.androidtv.ui.ExpandableTextView
+    <org.jellyfin.androidtvc.ui.ExpandableTextView
         android:id="@+id/login_disclaimer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -114,7 +114,7 @@
             android:layout_alignStart="@+id/fdMainInfoRow"
             android:minHeight="22sp" />
 
-        <org.jellyfin.androidtv.ui.ExpandableTextView
+        <org.jellyfin.androidtvc.ui.ExpandableTextView
             android:id="@+id/fdSummaryText"
             android:layout_width="match_parent"
             android:layout_height="135dp"
@@ -149,7 +149,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/middleFrame">
 
-        <org.jellyfin.androidtv.ui.AsyncImageView
+        <org.jellyfin.androidtvc.ui.AsyncImageView
             android:id="@+id/mainImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

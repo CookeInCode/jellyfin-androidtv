@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:background="@drawable/moviebg">
 
-    <org.jellyfin.androidtv.ui.AsyncImageView
+    <org.jellyfin.androidtvc.ui.AsyncImageView
         android:id="@+id/logo"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginEnd="0dp">
 
-            <org.jellyfin.androidtv.ui.AsyncImageView
+            <org.jellyfin.androidtvc.ui.AsyncImageView
                 android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -78,7 +78,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Episode title" />
 
-        <org.jellyfin.androidtv.ui.playback.nextup.NextUpButtonsView
+        <org.jellyfin.androidtvc.ui.playback.nextup.NextUpButtonsView
             android:id="@+id/fragment_next_up_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

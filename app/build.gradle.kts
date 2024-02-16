@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-	namespace = "org.jellyfin.androidtv"
+	namespace = "org.jellyfin.androidtvc"
 	compileSdk = 34
 
 	defaultConfig {

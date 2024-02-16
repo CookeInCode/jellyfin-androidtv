@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.jellyfin.androidtv.ui.FadeViewSwitcherLayout
+    <org.jellyfin.androidtvc.ui.FadeViewSwitcherLayout
         android:id="@+id/item_switcher"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -14,16 +14,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <org.jellyfin.androidtv.ui.AsyncImageView
+        <org.jellyfin.androidtvc.ui.AsyncImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black" />
 
-        <org.jellyfin.androidtv.ui.AsyncImageView
+        <org.jellyfin.androidtvc.ui.AsyncImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black" />
-    </org.jellyfin.androidtv.ui.FadeViewSwitcherLayout>
+    </org.jellyfin.androidtvc.ui.FadeViewSwitcherLayout>
 
     <LinearLayout
         android:id="@+id/actions"

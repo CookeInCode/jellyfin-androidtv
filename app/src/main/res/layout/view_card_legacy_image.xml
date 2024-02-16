@@ -28,7 +28,7 @@
         tools:visibility="visible">
 
         <!-- Crossfading is broken with this specific layout, especially when using thumbnails -->
-        <org.jellyfin.androidtv.ui.AsyncImageView
+        <org.jellyfin.androidtvc.ui.AsyncImageView
             android:id="@+id/main_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

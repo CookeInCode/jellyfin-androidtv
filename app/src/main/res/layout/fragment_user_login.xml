@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitle"
-        tools:name="org.jellyfin.androidtv.ui.startup.fragment.UserLoginCredentialsFragment" />
+        tools:name="org.jellyfin.androidtvc.ui.startup.fragment.UserLoginCredentialsFragment" />
 
     <LinearLayout
         android:id="@+id/actions"

@@ -12,7 +12,7 @@
             path="org.jellyfin.androidtv_preferences" />
         <include
             domain="sharedpref"
-            path="org.jellyfin.androidtv.debug_preferences" />
+            path="org.jellyfin.androidtvc.debug_preferences" />
         <!-- SystemPreferences -->
         <include
             domain="sharedpref"
@@ -34,7 +34,7 @@
             path="org.jellyfin.androidtv_preferences" />
         <include
             domain="sharedpref"
-            path="org.jellyfin.androidtv.debug_preferences" />
+            path="org.jellyfin.androidtvc.debug_preferences" />
         <!-- SystemPreferences -->
         <include
             domain="sharedpref"

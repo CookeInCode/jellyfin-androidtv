@@ -201,7 +201,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <org.jellyfin.androidtv.ui.AsyncImageView
+            <org.jellyfin.androidtvc.ui.AsyncImageView
                 android:id="@+id/poster"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
@@ -234,7 +234,7 @@
 
     </ScrollView>
 
-    <org.jellyfin.androidtv.ui.ClockUserView
+    <org.jellyfin.androidtvc.ui.ClockUserView
         android:id="@+id/clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
