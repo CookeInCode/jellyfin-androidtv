@@ -52,7 +52,8 @@
         android:privateImeOptions="horizontalAlignment=right"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/address_label" />
+        app:layout_constraintTop_toBottomOf="@id/address_label"
+        android:text="192.168.127.5:8096" />
 
     <Button
         android:id="@+id/confirm"
