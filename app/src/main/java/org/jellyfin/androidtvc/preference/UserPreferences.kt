@@ -55,7 +55,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		/**
 		 * Maximum bitrate in megabit for playback.
 		 */
-		var maxBitrate = stringPreference("pref_max_bitrate", "100")
+		var maxBitrate = stringPreference("pref_max_bitrate", "10")
 
 		/**
 		 * Auto-play next item
@@ -87,7 +87,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		/**
 		 * Preferred video player.
 		 */
-		var videoPlayer = enumPreference("video_player", PreferredVideoPlayer.EXOPLAYER)
+		var videoPlayer = enumPreference("video_player", PreferredVideoPlayer.VLC)
 
 		/**
 		 * Change refresh rate to match media when device supports it
