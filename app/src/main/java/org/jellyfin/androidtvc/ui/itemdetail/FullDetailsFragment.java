@@ -560,20 +560,20 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 }
 
                 //Cast/Crew
-                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
-                    ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
-                    addItemRow(adapter, castAdapter, 1, getString(R.string.lbl_cast_crew));
-                }
+//                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
+//                    ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
+//                    addItemRow(adapter, castAdapter, 1, getString(R.string.lbl_cast_crew));
+//                }
 
-                //Specials
-                if (mBaseItem.getSpecialFeatureCount() != null && mBaseItem.getSpecialFeatureCount() > 0) {
-                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new SpecialsQuery(mBaseItem.getId()), new CardPresenter(), adapter), 3, getString(R.string.lbl_specials));
-                }
+//                //Specials
+//                if (mBaseItem.getSpecialFeatureCount() != null && mBaseItem.getSpecialFeatureCount() > 0) {
+//                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new SpecialsQuery(mBaseItem.getId()), new CardPresenter(), adapter), 3, getString(R.string.lbl_specials));
+//                }
 
-                //Trailers
-                if (mBaseItem.getLocalTrailerCount() != null && mBaseItem.getLocalTrailerCount() > 1) {
-                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new TrailersQuery(mBaseItem.getId()), new CardPresenter(), adapter), 4, getString(R.string.lbl_trailers));
-                }
+//                //Trailers
+//               if (mBaseItem.getLocalTrailerCount() != null && mBaseItem.getLocalTrailerCount() > 1) {
+//                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new TrailersQuery(mBaseItem.getId()), new CardPresenter(), adapter), 4, getString(R.string.lbl_trailers));
+//                }
 
                 //Chapters
                 if (mBaseItem.getChapters() != null && mBaseItem.getChapters().size() > 0) {
@@ -582,85 +582,85 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                     addItemRow(adapter, chapterAdapter, 2, getString(R.string.lbl_chapters));
                 }
 
-                //Similar
-                SimilarItemsQuery similar = new SimilarItemsQuery();
-                similar.setFields(new ItemFields[] {
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.ChildCount
-                });
-                similar.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                similar.setId(mBaseItem.getId());
-                similar.setLimit(10);
+//                //Similar
+//                SimilarItemsQuery similar = new SimilarItemsQuery();
+//                similar.setFields(new ItemFields[] {
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.ChildCount
+//                });
+//                similar.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                similar.setId(mBaseItem.getId());
+//                similar.setLimit(10);
 
-                ItemRowAdapter similarMoviesAdapter = new ItemRowAdapter(requireContext(), similar, QueryType.SimilarMovies, new CardPresenter(), adapter);
-                addItemRow(adapter, similarMoviesAdapter, 5, getString(R.string.lbl_more_like_this));
+//                ItemRowAdapter similarMoviesAdapter = new ItemRowAdapter(requireContext(), similar, QueryType.SimilarMovies, new CardPresenter(), adapter);
+//                addItemRow(adapter, similarMoviesAdapter, 5, getString(R.string.lbl_more_like_this));
 
-                addInfoRows(adapter);
+//                addInfoRows(adapter);
                 break;
             case Trailer:
 
                 //Cast/Crew
-                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
-                    ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
-                    addItemRow(adapter, castAdapter, 0, getString(R.string.lbl_cast_crew));
-                }
+//                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
+//                    ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
+//                    addItemRow(adapter, castAdapter, 0, getString(R.string.lbl_cast_crew));
+//                }
+//
+//                //Similar
+//                SimilarItemsQuery similarTrailer = new SimilarItemsQuery();
+//                similarTrailer.setFields(new ItemFields[] {
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.ChildCount
+//                });
+//                similarTrailer.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                similarTrailer.setId(mBaseItem.getId());
+//                similarTrailer.setLimit(10);
 
-                //Similar
-                SimilarItemsQuery similarTrailer = new SimilarItemsQuery();
-                similarTrailer.setFields(new ItemFields[] {
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.ChildCount
-                });
-                similarTrailer.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                similarTrailer.setId(mBaseItem.getId());
-                similarTrailer.setLimit(10);
-
-                ItemRowAdapter similarTrailerAdapter = new ItemRowAdapter(requireContext(), similarTrailer, QueryType.SimilarMovies, new CardPresenter(), adapter);
-                addItemRow(adapter, similarTrailerAdapter, 4, getString(R.string.lbl_more_like_this));
-                addInfoRows(adapter);
-                break;
+//                ItemRowAdapter similarTrailerAdapter = new ItemRowAdapter(requireContext(), similarTrailer, QueryType.SimilarMovies, new CardPresenter(), adapter);
+//                addItemRow(adapter, similarTrailerAdapter, 4, getString(R.string.lbl_more_like_this));
+//                addInfoRows(adapter);
+//                break;
             case Person:
 
-                ItemQuery personMovies = new ItemQuery();
-                personMovies.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.ChildCount
-                });
-                personMovies.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                personMovies.setPersonIds(new String[] {mBaseItem.getId()});
-                personMovies.setRecursive(true);
-                personMovies.setIncludeItemTypes(new String[] {"Movie"});
-                personMovies.setSortBy(new String[] {ItemSortBy.SortName});
-                ItemRowAdapter personMoviesAdapter = new ItemRowAdapter(requireContext(), personMovies, 100, false, new CardPresenter(), adapter);
-                addItemRow(adapter, personMoviesAdapter, 0, getString(R.string.lbl_movies));
+//                ItemQuery personMovies = new ItemQuery();
+//                personMovies.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.ChildCount
+//                });
+//                personMovies.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                personMovies.setPersonIds(new String[] {mBaseItem.getId()});
+//                personMovies.setRecursive(true);
+//                personMovies.setIncludeItemTypes(new String[] {"Movie"});
+//                personMovies.setSortBy(new String[] {ItemSortBy.SortName});
+//                ItemRowAdapter personMoviesAdapter = new ItemRowAdapter(requireContext(), personMovies, 100, false, new CardPresenter(), adapter);
+//                addItemRow(adapter, personMoviesAdapter, 0, getString(R.string.lbl_movies));
 
-                ItemQuery personSeries = new ItemQuery();
-                personSeries.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.DisplayPreferencesId,
-                        ItemFields.ChildCount
-                });
-                personSeries.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                personSeries.setPersonIds(new String[] {mBaseItem.getId()});
-                personSeries.setRecursive(true);
-                personSeries.setIncludeItemTypes(new String[] {"Series"});
-                personSeries.setSortBy(new String[] {ItemSortBy.SortName});
-                ItemRowAdapter personSeriesAdapter = new ItemRowAdapter(requireContext(), personSeries, 100, false, new CardPresenter(), adapter);
-                addItemRow(adapter, personSeriesAdapter, 1, getString(R.string.lbl_tv_series));
+//                ItemQuery personSeries = new ItemQuery();
+//                personSeries.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.DisplayPreferencesId,
+//                        ItemFields.ChildCount
+//                });
+//                personSeries.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                personSeries.setPersonIds(new String[] {mBaseItem.getId()});
+//                personSeries.setRecursive(true);
+//                personSeries.setIncludeItemTypes(new String[] {"Series"});
+//                personSeries.setSortBy(new String[] {ItemSortBy.SortName});
+//                ItemRowAdapter personSeriesAdapter = new ItemRowAdapter(requireContext(), personSeries, 100, false, new CardPresenter(), adapter);
+//                addItemRow(adapter, personSeriesAdapter, 1, getString(R.string.lbl_tv_series));
 
-                ItemQuery personEpisodes = new ItemQuery();
-                personEpisodes.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.DisplayPreferencesId,
-                        ItemFields.ChildCount
-                });
-                personEpisodes.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                personEpisodes.setPersonIds(new String[] {mBaseItem.getId()});
-                personEpisodes.setRecursive(true);
-                personEpisodes.setIncludeItemTypes(new String[] {"Episode"});
-                personEpisodes.setSortBy(new String[] {ItemSortBy.SeriesSortName, ItemSortBy.SortName});
-                ItemRowAdapter personEpisodesAdapter = new ItemRowAdapter(requireContext(), personEpisodes, 100, false, new CardPresenter(), adapter);
-                addItemRow(adapter, personEpisodesAdapter, 2, getString(R.string.lbl_episodes));
+//                ItemQuery personEpisodes = new ItemQuery();
+//                personEpisodes.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.DisplayPreferencesId,
+//                        ItemFields.ChildCount
+//                });
+//                personEpisodes.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                personEpisodes.setPersonIds(new String[] {mBaseItem.getId()});
+//                personEpisodes.setRecursive(true);
+//                personEpisodes.setIncludeItemTypes(new String[] {"Episode"});
+//                personEpisodes.setSortBy(new String[] {ItemSortBy.SeriesSortName, ItemSortBy.SortName});
+//                ItemRowAdapter personEpisodesAdapter = new ItemRowAdapter(requireContext(), personEpisodes, 100, false, new CardPresenter(), adapter);
+//                addItemRow(adapter, personEpisodesAdapter, 2, getString(R.string.lbl_episodes));
 
                 break;
             case MusicArtist:
@@ -679,15 +679,15 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
 
                 break;
             case Series:
-                NextUpQuery nextUpQuery = new NextUpQuery();
-                nextUpQuery.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                nextUpQuery.setSeriesId(mBaseItem.getId());
-                nextUpQuery.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.ChildCount
-                });
-                ItemRowAdapter nextUpAdapter = new ItemRowAdapter(requireContext(), nextUpQuery, false, new CardPresenter(true, 130), adapter);
-                addItemRow(adapter, nextUpAdapter, 0, getString(R.string.lbl_next_up));
+//                NextUpQuery nextUpQuery = new NextUpQuery();
+//                nextUpQuery.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                nextUpQuery.setSeriesId(mBaseItem.getId());
+//                nextUpQuery.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.ChildCount
+//                });
+//                ItemRowAdapter nextUpAdapter = new ItemRowAdapter(requireContext(), nextUpQuery, false, new CardPresenter(true, 130), adapter);
+//                addItemRow(adapter, nextUpAdapter, 0, getString(R.string.lbl_next_up));
 
                 SeasonQuery seasons = new SeasonQuery();
                 seasons.setSeriesId(mBaseItem.getId());
@@ -701,38 +701,37 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 addItemRow(adapter, seasonsAdapter, 1, getString(R.string.lbl_seasons));
 
                 //Specials
-                if (mBaseItem.getSpecialFeatureCount() != null && mBaseItem.getSpecialFeatureCount() > 0) {
-                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new SpecialsQuery(mBaseItem.getId()), new CardPresenter(), adapter), 3, getString(R.string.lbl_specials));
-                }
+//                if (mBaseItem.getSpecialFeatureCount() != null && mBaseItem.getSpecialFeatureCount() > 0) {
+//                    addItemRow(adapter, new ItemRowAdapter(requireContext(), new SpecialsQuery(mBaseItem.getId()), new CardPresenter(), adapter), 3, getString(R.string.lbl_specials));
+//                }
 
-                UpcomingEpisodesQuery upcoming = new UpcomingEpisodesQuery();
-                upcoming.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                upcoming.setParentId(mBaseItem.getId());
-                upcoming.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.ChildCount
-                });
-                ItemRowAdapter upcomingAdapter = new ItemRowAdapter(requireContext(), upcoming, new CardPresenter(), adapter);
-                addItemRow(adapter, upcomingAdapter, 2, getString(R.string.lbl_upcoming));
+//                UpcomingEpisodesQuery upcoming = new UpcomingEpisodesQuery();
+//                upcoming.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                upcoming.setParentId(mBaseItem.getId());//               upcoming.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.ChildCount
+//                });
+//                ItemRowAdapter upcomingAdapter = new ItemRowAdapter(requireContext(), upcoming, new CardPresenter(), adapter);
+//                addItemRow(adapter, upcomingAdapter, 2, getString(R.string.lbl_upcoming));
 
-                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
-                    ItemRowAdapter seriesCastAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
-                    addItemRow(adapter, seriesCastAdapter, 3, getString(R.string.lbl_cast_crew));
+//                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
+//                    ItemRowAdapter seriesCastAdapter = new ItemRowAdapter(requireContext(), ModelCompat.asSdk(mBaseItem.getPeople()), new CardPresenter(true, 130), adapter);
+//                    addItemRow(adapter, seriesCastAdapter, 3, getString(R.string.lbl_cast_crew));
 
-                }
+//                }
 
-                SimilarItemsQuery similarSeries = new SimilarItemsQuery();
-                similarSeries.setFields(new ItemFields[]{
-                        ItemFields.PrimaryImageAspectRatio,
-                        ItemFields.DisplayPreferencesId,
-                        ItemFields.ChildCount
-                });
-                similarSeries.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
-                similarSeries.setId(mBaseItem.getId());
-                similarSeries.setLimit(20);
-                ItemRowAdapter similarAdapter = new ItemRowAdapter(requireContext(), similarSeries, QueryType.SimilarSeries, new CardPresenter(), adapter);
-                addItemRow(adapter, similarAdapter, 4, getString(R.string.lbl_more_like_this));
-                break;
+//                SimilarItemsQuery similarSeries = new SimilarItemsQuery();
+//                similarSeries.setFields(new ItemFields[]{
+//                        ItemFields.PrimaryImageAspectRatio,
+//                        ItemFields.DisplayPreferencesId,
+//                        ItemFields.ChildCount
+//                });
+//                similarSeries.setUserId(KoinJavaComponent.<UserRepository>get(UserRepository.class).getCurrentUser().getValue().getId().toString());
+//                similarSeries.setId(mBaseItem.getId());
+//                similarSeries.setLimit(20);
+//                ItemRowAdapter similarAdapter = new ItemRowAdapter(requireContext(), similarSeries, QueryType.SimilarSeries, new CardPresenter(), adapter);
+//                addItemRow(adapter, similarAdapter, 4, getString(R.string.lbl_more_like_this));
+//                break;
 
             case Episode:
                 if (mBaseItem.getSeasonId() != null && mBaseItem.getIndexNumber() != null) {
@@ -746,16 +745,16 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 }
 
                 //Guest stars
-                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
-                    List<BaseItemPerson> guests = new ArrayList<>();
-                    for (BaseItemPerson person : ModelCompat.asSdk(mBaseItem.getPeople())) {
-                        if (person.getType() == PersonType.GuestStar) guests.add(person);
-                    }
-                    if (guests.size() > 0) {
-                        ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), guests.toArray(new BaseItemPerson[guests.size()]), new CardPresenter(true, 130), adapter);
-                        addItemRow(adapter, castAdapter, 0, getString(R.string.lbl_guest_stars));
-                    }
-                }
+//                if (mBaseItem.getPeople() != null && mBaseItem.getPeople().length > 0) {
+//                    List<BaseItemPerson> guests = new ArrayList<>();
+//                    for (BaseItemPerson person : ModelCompat.asSdk(mBaseItem.getPeople())) {
+//                        if (person.getType() == PersonType.GuestStar) guests.add(person);
+//                    }
+//                    if (guests.size() > 0) {
+//                        ItemRowAdapter castAdapter = new ItemRowAdapter(requireContext(), guests.toArray(new BaseItemPerson[guests.size()]), new CardPresenter(true, 130), adapter);
+//                        addItemRow(adapter, castAdapter, 0, getString(R.string.lbl_guest_stars));
+//                    }
+//                }
 
                 //Chapters
                 if (mBaseItem.getChapters() != null && mBaseItem.getChapters().size() > 0) {
@@ -767,11 +766,11 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                 addInfoRows(adapter);
                 break;
 
-            case SeriesTimer:
-                TimerQuery scheduled = new TimerQuery();
-                scheduled.setSeriesTimerId(mSeriesTimerInfo.getId());
-                TvManager.getScheduleRowsAsync(requireContext(), scheduled, new CardPresenter(true), adapter, new LifecycleAwareResponse<Integer>(getLifecycle()) {});
-                break;
+//            case SeriesTimer:
+//                TimerQuery scheduled = new TimerQuery();
+//                scheduled.setSeriesTimerId(mSeriesTimerInfo.getId());
+//                TvManager.getScheduleRowsAsync(requireContext(), scheduled, new CardPresenter(true), adapter, new LifecycleAwareResponse<Integer>(getLifecycle()) {});
+//                break;
         }
 
 
@@ -787,7 +786,7 @@ public class FullDetailsFragment extends Fragment implements RecordingIndicatorV
                         infoAdapter.add(ModelCompat.asSdk(stream));
                     }
 
-                    adapter.add(new ListRow(header, infoAdapter));
+//                    adapter.add(new ListRow(header, infoAdapter));
 
                 }
             }
