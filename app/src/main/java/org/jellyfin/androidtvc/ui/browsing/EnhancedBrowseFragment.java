@@ -299,7 +299,6 @@ public class EnhancedBrowseFragment extends Fragment implements RowLoader, View.
 
         switch (itemTypeString) {
             case "Movie":
-                gridRowAdapter.add(new GridButton(SUGGESTED, getString(R.string.lbl_suggested)));
                 addStandardViewButtons(gridRowAdapter);
                 break;
 
@@ -319,7 +318,6 @@ public class EnhancedBrowseFragment extends Fragment implements RowLoader, View.
     }
 
     protected void addStandardViewButtons(ArrayObjectAdapter gridRowAdapter) {
-        gridRowAdapter.add(new GridButton(GRID, getString(R.string.lbl_all_items)));
         gridRowAdapter.add(new GridButton(BY_LETTER, getString(R.string.lbl_by_letter)));
         gridRowAdapter.add(new GridButton(GENRES, getString(R.string.lbl_genres)));
         // Disabled because the screen doesn't behave properly

@@ -12,6 +12,7 @@ import org.jellyfin.androidtvc.ui.browsing.ByGenreFragment
 import org.jellyfin.androidtvc.ui.browsing.ByLetterFragment
 import org.jellyfin.androidtvc.ui.browsing.CollectionFragment
 import org.jellyfin.androidtvc.ui.browsing.DisplayPreferencesScreen
+import org.jellyfin.androidtvc.ui.browsing.EnhancedBrowseFragment
 import org.jellyfin.androidtvc.ui.browsing.GenericFolderFragment
 import org.jellyfin.androidtvc.ui.browsing.SuggestedMoviesFragment
 import org.jellyfin.androidtvc.ui.home.HomeFragment
@@ -161,4 +162,9 @@ object Destinations {
 	fun nextUp(item: UUID) = fragmentDestination<NextUpFragment>(
 		NextUpFragment.ARGUMENT_ITEM_ID to item.toString()
 	)
+
+	fun simpleBrowse(baseItem: BaseItemDto): Destination.Fragment {
+		val extras = bundleOf(Extras.Folder to Json.Default.encodeToString(baseItem))
+		return Destination.Fragment(EnhancedBrowseFragment::class, extras)
+	}
 }

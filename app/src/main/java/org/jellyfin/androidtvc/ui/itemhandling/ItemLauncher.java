@@ -55,7 +55,7 @@ public class ItemLauncher {
                 boolean enableSmartScreen = displayPreferences.get(LibraryPreferences.Companion.getEnableSmartScreen());
 
                 if (!enableSmartScreen) return Destinations.INSTANCE.libraryBrowser(baseItem);
-                else return Destinations.INSTANCE.librarySmartScreen(baseItem);
+                else return Destinations.INSTANCE.simpleBrowse(baseItem);
             case CollectionType.Music:
             case CollectionType.LiveTv:
                 return Destinations.INSTANCE.librarySmartScreen(baseItem);
