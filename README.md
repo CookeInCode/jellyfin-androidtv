@@ -1,9 +1,10 @@
 A customized version of the popular Android TV client application tailored specifically for Jellyfin users, **users!**
 
 Modifications from the Official Repository:
-- The package name has been altered, enabling concurrent installation with the official version.
-- It distinctly sets itself apart from the official version.
-- It provides automatic suggestion/population of default server addresses during setup (modification of the auto-suggestion server address requires the use of Android Studio).
+- Package name has been altered, enabling concurrent installation with the official version.
+- Distinctly sets itself apart from the official version.
+- Streamlined many elements of the UI to create a less cluttered and more inviting appearance.
+- Automatic population of a default server addresses during setup (Android Studio required).
 
 **Firestick**
 
