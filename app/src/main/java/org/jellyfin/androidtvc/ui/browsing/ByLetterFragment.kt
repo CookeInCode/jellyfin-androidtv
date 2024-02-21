@@ -5,6 +5,14 @@ import org.jellyfin.androidtvc.data.querying.StdItemQuery
 import org.jellyfin.sdk.model.constant.ItemSortBy
 
 class ByLetterFragment : BrowseFolderFragment() {
+
+	override fun onStart() {
+		super.onStart()
+
+		// Hide the title provided by the Leanback library
+		title = null
+	}
+
 	override suspend fun setupQueries(rowLoader: RowLoader) {
 		val childCount = folder?.childCount ?: 0
 		if (childCount <= 0) return

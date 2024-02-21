@@ -12,8 +12,8 @@ class TelemetryPreferences(context: Context) : SharedPreferenceStore(
 	companion object {
 		const val SHARED_PREFERENCES_NAME = "telemetry"
 
-		var crashReportEnabled = booleanPreference(ACRA.PREF_ENABLE_ACRA, true)
-		var crashReportIncludeLogs = booleanPreference(ACRA.PREF_ENABLE_SYSTEM_LOGS, true)
+		var crashReportEnabled = booleanPreference(ACRA.PREF_ENABLE_ACRA, false)
+		var crashReportIncludeLogs = booleanPreference(ACRA.PREF_ENABLE_SYSTEM_LOGS, false)
 
 		var crashReportToken = stringPreference("server_token", "")
 		var crashReportUrl = stringPreference("server_url", "")

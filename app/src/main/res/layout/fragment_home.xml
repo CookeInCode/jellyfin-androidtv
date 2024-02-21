@@ -73,7 +73,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:focusedByDefault="true"
-        android:textStyle="bold|italic">>
+        android:textStyle="bold|italic">
 
         <requestFocus />
     </androidx.fragment.app.FragmentContainerView>

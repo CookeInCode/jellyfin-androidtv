@@ -27,15 +27,15 @@ object TelemetryService {
 	 * Call in the attachBaseContext function of the application.
 	 */
 	fun init(context: Application) {
-		ACRA.DEV_LOGGING = true
+		ACRA.DEV_LOGGING = false
 		context.initAcra {
 			buildConfigClass = BuildConfig::class.java
 			sharedPreferencesName = TelemetryPreferences.SHARED_PREFERENCES_NAME
 			pluginLoader = AcraPluginLoader(AcraReportSenderFactory::class.java)
 			applicationLogFileLines = 250
 
-			toast {
-				text = context.getString(R.string.crash_report_toast)
+//			toast {
+//				text = context.getString(R.string.crash_report_toast)
 			}
 		}
 	}
@@ -171,4 +171,4 @@ object TelemetryService {
 			return AcraReportSender(url, token, includeLogs)
 		}
 	}
-}
+

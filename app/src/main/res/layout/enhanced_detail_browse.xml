@@ -64,6 +64,7 @@
         android:id="@+id/npBug"
         android:layout_alignBottom="@+id/clock"
         android:layout_marginEnd="25dp"
-        android:layout_toStartOf="@+id/clock" />
+        android:layout_toStartOf="@+id/clock"
+        android:visibility="gone" />
 
 </RelativeLayout>
