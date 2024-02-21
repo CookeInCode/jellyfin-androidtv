@@ -23,7 +23,8 @@
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:contentDescription="@string/lbl_search"
-                android:src="@drawable/ic_search" />
+                android:src="@drawable/ic_search"
+                android:alpha="0.20"/>
 
             <Space
                 android:layout_width="8dp"
@@ -35,7 +36,8 @@
                 android:layout_width="41dp"
                 android:layout_height="41dp"
                 android:contentDescription="@string/lbl_settings"
-                android:src="@drawable/ic_settings" />
+                android:src="@drawable/ic_settings"
+                android:alpha="0.20"/>
 
             <Space
                 android:layout_width="8dp"
@@ -54,7 +56,8 @@
                     android:layout_height="match_parent"
                     android:padding="4dp"
                     app:circleCrop="true"
-                    tools:src="@drawable/ic_user" />
+                    tools:src="@drawable/ic_user"
+                    android:alpha="0.20"/>
             </FrameLayout>
         </LinearLayout>
     </org.jellyfin.androidtvc.ui.shared.ToolbarView>

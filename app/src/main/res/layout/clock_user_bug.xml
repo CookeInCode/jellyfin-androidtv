@@ -30,5 +30,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         tools:ignore="RtlSymmetry"
-        tools:text="13:37" />
+        tools:text="13:37"
+        android:visibility="gone" />
+
 </LinearLayout>

@@ -16,7 +16,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:fontFamily="sans-serif-light"
-         />
+        android:visibility="gone" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -26,7 +26,8 @@
         android:layout_alignStart="@+id/title"
         android:layout_marginTop="3sp"
         android:id="@+id/infoRow"
-        android:layout_toStartOf="@+id/clock"/>
+        android:layout_toStartOf="@+id/clock"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="570sp"
@@ -54,7 +55,8 @@
         android:id="@+id/clock"
         android:layout_alignTop="@+id/title"
         android:layout_marginEnd="40sp"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="gone" />
 
     <org.jellyfin.androidtvc.ui.NowPlayingView
         android:layout_width="wrap_content"

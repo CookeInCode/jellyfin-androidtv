@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="false"
         android:id="@+id/rowsFragment" />
+    \
 
     <org.jellyfin.androidtvc.ui.ClockUserView
         android:layout_width="wrap_content"
@@ -19,7 +20,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="false"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40sp" />
+        android:layout_marginEnd="40sp"
+        android:visibility="gone" />
 
     <org.jellyfin.androidtvc.ui.NowPlayingView
         android:layout_width="wrap_content"
@@ -27,6 +29,7 @@
         android:id="@+id/npBug"
         android:layout_alignBottom="@+id/fdClock"
         android:layout_marginEnd="25dp"
-        android:layout_toStartOf="@+id/fdClock" />
+        android:layout_toStartOf="@+id/fdClock"
+        android:visibility="gone" />/>
 
 </RelativeLayout>

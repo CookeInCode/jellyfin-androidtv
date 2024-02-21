@@ -37,7 +37,8 @@
         android:layout_alignStart="@+id/title"
         android:layout_marginTop="5sp"
         android:id="@+id/infoRow"
-        android:layout_toStartOf="@+id/clock"/>
+        android:layout_toStartOf="@+id/clock"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/toolBar"
@@ -84,7 +85,8 @@
         android:layout_alignTop="@+id/title"
         android:layout_marginEnd="40sp"
         android:layout_marginStart="8sp"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="gone" />
 
     <org.jellyfin.androidtvc.ui.NowPlayingView
         android:layout_width="wrap_content"

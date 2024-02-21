@@ -24,7 +24,8 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/app_logo" />
+            android:src="@drawable/app_logo"
+            android:alpha="0.20"/>
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +64,8 @@
             android:paddingStart="24dp"
             android:textSize="20sp"
             tools:text="13:37"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            android:alpha="0.20"/>/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
