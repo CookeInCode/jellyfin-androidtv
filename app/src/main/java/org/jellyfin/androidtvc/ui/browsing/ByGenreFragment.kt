@@ -9,6 +9,13 @@ import org.koin.android.ext.android.inject
 class ByGenreFragment : BrowseFolderFragment() {
 	private val apiClient by inject<ApiClient>()
 
+	override fun onStart() {
+		super.onStart()
+
+		// Hide the title provided by the Leanback library
+		title = null
+	}
+
 	override suspend fun setupQueries(rowLoader: RowLoader) {
 		val childCount = folder?.childCount ?: 0
 		if (childCount <= 0) return
