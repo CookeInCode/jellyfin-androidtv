@@ -32,10 +32,6 @@ class CustomizationPreferencesScreen : OptionsFragment() {
 				bind(userPreferences, UserPreferences.appTheme)
 			}
 
-			enum<ClockBehavior> {
-				setTitle(R.string.pref_clock_display)
-				bind(userPreferences, UserPreferences.clockBehavior)
-			}
 
 			enum<WatchedIndicatorBehavior> {
 				setTitle(R.string.pref_watched_indicator)
