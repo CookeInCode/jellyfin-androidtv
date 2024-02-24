@@ -43,18 +43,20 @@ class UserLoginCredentialsFragment : Fragment() {
 			setOnEditorActionListener { _, actionId, _ ->
 				when (actionId) {
 					EditorInfo.IME_ACTION_DONE -> {
-						loginWithCredentials()
+						loginWithCredentials() // Call loginWithCredentials() when the "Done" action is triggered
 						true
 					}
-
 					else -> false
 				}
 			}
 		}
 
 		with(binding.confirm) {
-			setOnClickListener { loginWithCredentials() }
+			setOnClickListener { loginWithCredentials() } // Call loginWithCredentials() when the "Confirm" button is clicked
 		}
+
+		// Call loginWithCredentials() when the fragment view is created
+		loginWithCredentials()
 
 		return binding.root
 	}
@@ -65,6 +67,13 @@ class UserLoginCredentialsFragment : Fragment() {
 		// Set focus
 		if (binding.username.isFocusable) binding.username.requestFocus()
 		else binding.password.requestFocus()
+
+		// Populate username and password fields
+		val hardcodedUsername = "USERNAME_HERE"
+		val hardcodedPassword = "PASSWD_HERE"
+
+		binding.username.setText(hardcodedUsername)
+		binding.password.setText(hardcodedPassword)
 
 		// React to login state
 		userLoginViewModel.loginState.onEach { state ->
@@ -85,6 +94,9 @@ class UserLoginCredentialsFragment : Fragment() {
 				null -> Unit
 			}
 		}.launchIn(lifecycleScope)
+
+		// Perform login action
+		loginWithCredentials()
 	}
 
 	override fun onDestroyView() {

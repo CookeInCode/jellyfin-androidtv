@@ -59,26 +59,26 @@ class ServerAddFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		if (serverAddressArgument != null) {
-			binding.address.setText(serverAddressArgument)
-			binding.address.isEnabled = false
-			submitAddress()
-		} else {
-			binding.address.requestFocus()
-		}
+		// Hardcoded server address
+		val providedServerAddress = "192.168.127.5:8096"
+
+		// Set the server address in the address field
+		binding.address.setText(providedServerAddress)
+
+		// Disable the address field to prevent user modification
+		binding.address.isEnabled = false
+
+		// Immediately initiate the connection process
+		submitAddress()
 
 		startupViewModel.state.onEach { state ->
 			when (state) {
 				is ConnectingState -> {
-					// Disable form
 					binding.address.isEnabled = false
 					binding.confirm.isEnabled = false
-					// Update state text
 					binding.error.text = getString(R.string.server_connecting, state.address)
 				}
-
 				is UnableToConnectState -> {
-					// Enable form
 					binding.address.isEnabled = true
 					binding.confirm.isEnabled = true
 					// Update state text
@@ -89,7 +89,6 @@ class ServerAddFragment : Fragment() {
 							.joinToString(prefix = "\n", separator = "\n")
 					)
 				}
-
 				is ConnectedState -> parentFragmentManager.commit {
 					// Open server view
 					replace<StartupToolbarFragment>(R.id.content_view)
@@ -101,11 +100,11 @@ class ServerAddFragment : Fragment() {
 						)
 					)
 				}
-
 				null -> Unit
 			}
 		}.launchIn(lifecycleScope)
 	}
+
 
 	override fun onDestroyView() {
 		super.onDestroyView()

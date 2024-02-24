@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="48dp"
     android:layout_marginVertical="27dp"
-    tools:context=".ui.startup.StartupActivity">
+    tools:context=".ui.startup.StartupActivity"
+    android:visibility="gone" >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center"
@@ -17,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/title"
@@ -27,7 +29,8 @@
         android:text="@string/lbl_enter_server_address"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/address_label"
@@ -37,7 +40,8 @@
         android:text="@string/lbl_valid_server_address"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/address"
@@ -53,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/address_label"
-        android:text="192.168.127.5:8096" />
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/confirm"
@@ -63,7 +67,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/action_connect"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/address" />
+        app:layout_constraintTop_toBottomOf="@id/address"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/error"
@@ -73,5 +78,6 @@
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirm"
-        tools:text="@string/server_connecting" />
+        tools:text="@string/server_connecting"
+        android:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

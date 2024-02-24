@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.startup.StartupActivity">
+    tools:context=".ui.startup.StartupActivity"
+    android:visibility="gone" >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center"
@@ -15,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="0dp"
@@ -24,7 +26,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/title"
@@ -37,7 +40,8 @@
         android:text="@string/lbl_sign_in"
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/subtitle"
@@ -49,7 +53,8 @@
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
-        tools:text="@string/login_connect_to" />
+        tools:text="@string/login_connect_to"
+        android:visibility="gone" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/login_method"
@@ -63,7 +68,8 @@
         app:layout_constraintEnd_toStartOf="@id/center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitle"
-        tools:name="org.jellyfin.androidtvc.ui.startup.fragment.UserLoginCredentialsFragment" />
+        tools:name="org.jellyfin.androidtvc.ui.startup.fragment.UserLoginCredentialsFragment"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/actions"
@@ -74,12 +80,14 @@
         android:layout_marginBottom="27dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/center"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_other_options" />
+            android:text="@string/login_other_options"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/use_credentials"
@@ -87,7 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/action_use_password" />
+            android:text="@string/action_use_password"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/use_quickconnect"
@@ -95,7 +104,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/action_use_quickconnect" />
+            android:text="@string/action_use_quickconnect"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/cancel"
@@ -104,6 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/btn_cancel"
-            tools:ignore="ButtonOrder" />
+            tools:ignore="ButtonOrder"
+            android:visibility="gone" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

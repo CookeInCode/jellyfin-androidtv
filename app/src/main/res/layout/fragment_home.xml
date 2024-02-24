@@ -46,18 +46,20 @@
             <FrameLayout
                 android:id="@+id/switch_users"
                 style="@style/Button.Icon"
-                android:layout_width="41dp"
-                android:layout_height="41dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
                 android:contentDescription="@string/lbl_switch_user">
 
                 <org.jellyfin.androidtvc.ui.AsyncImageView
                     android:id="@+id/switch_users_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:alpha="0.20"
+                    android:clickable="false"
                     android:padding="4dp"
+                    android:visibility="gone"
                     app:circleCrop="true"
-                    tools:src="@drawable/ic_user"
-                    android:alpha="0.20"/>
+                    tools:src="@drawable/ic_user" />
             </FrameLayout>
         </LinearLayout>
     </org.jellyfin.androidtvc.ui.shared.ToolbarView>

@@ -52,6 +52,13 @@ class SelectServerFragment : Fragment() {
 	private val binding get() = _binding!!
 	private val startupViewModel: StartupViewModel by activityViewModel()
 
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
+		// Automatically trigger the manual server addition process
+		binding.enterServerAddress.performClick()
+	}
+
 	@Suppress("LongMethod")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		_binding = FragmentSelectServerBinding.inflate(inflater, container, false)

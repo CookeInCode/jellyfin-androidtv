@@ -60,10 +60,6 @@ class UserLoginFragment : Fragment() {
 
 		userLoginViewModel.clearLoginState()
 
-		// Open initial fragment
-		if (skipQuickConnect) setLoginMethod<UserLoginCredentialsFragment>()
-		else setLoginMethod<UserLoginQuickConnectFragment>()
-
 		// Update "connecting to ..." text and background
 		userLoginViewModel.server.onEach { server ->
 			val name = server?.name ?: "Jellyfin"
@@ -78,7 +74,15 @@ class UserLoginFragment : Fragment() {
 			binding.useQuickconnect.isEnabled = state != UnavailableQuickConnectState
 			if (state == UnavailableQuickConnectState) setLoginMethod<UserLoginCredentialsFragment>()
 		}.launchIn(lifecycleScope)
+
+		// Automatically select Add Account method
+		setLoginMethod<UserLoginCredentialsFragment>()
+
+		// Hide button for active fragment
+		binding.useCredentials.isVisible = true
+		binding.useQuickconnect.isVisible = false
 	}
+
 
 	override fun onDestroyView() {
 		super.onDestroyView()

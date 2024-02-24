@@ -73,56 +73,63 @@ class ServerFragment : Fragment() {
 
 		val userAdapter = UserAdapter(requireContext(), server, startupViewModel, authenticationRepository, serverUserRepository)
 		userAdapter.onItemPressed = { user ->
-			startupViewModel.authenticate(server, user).onEach { state ->
-				when (state) {
-					// Ignored states
-					AuthenticatingState -> Unit
-					AuthenticatedState -> Unit
-					// Actions
-					RequireSignInState -> navigateFragment<UserLoginFragment>(bundleOf(
-						UserLoginFragment.ARG_SERVER_ID to server.id.toString(),
-						UserLoginFragment.ARG_USERNAME to user.name,
-					))
-					// Errors
-					ServerUnavailableState,
-					is ApiClientErrorLoginState -> Toast.makeText(context, R.string.server_connection_failed, Toast.LENGTH_LONG).show()
-
-					is ServerVersionNotSupported -> Toast.makeText(
-						context,
-						getString(
-							R.string.server_issue_outdated_version,
-							state.server.version,
-							ServerRepository.recommendedServerVersion.toString()
-						),
-						Toast.LENGTH_LONG
-					).show()
-				}
-			}.launchIn(lifecycleScope)
+			startViewModelAuthenticate(server, user)
 		}
 		binding.users.adapter = userAdapter
 
-		startupViewModel.users
-			.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-			.onEach { users ->
-				userAdapter.items = users
+		// Automatically add user logic
+		navigateFragment<UserLoginFragment>(
+			args = bundleOf(
+				UserLoginFragment.ARG_SERVER_ID to server.id.toString(),
+				UserLoginFragment.ARG_USERNAME to null
+			)
+		)
 
-				binding.users.isFocusable = users.any()
-				binding.noUsersWarning.isVisible = users.isEmpty()
-				binding.root.requestFocus()
-			}.launchIn(viewLifecycleOwner.lifecycleScope)
-
-		startupViewModel.loadUsers(server)
-
-		onServerChange(server)
-
-		lifecycleScope.launch {
-			lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-				val updated = startupViewModel.updateServer(server)
-				if (updated) startupViewModel.getServer(server.id)?.let(::onServerChange)
-			}
-		}
+		setupViewElements(server)
 
 		return binding.root
+	}
+
+
+	private fun setupViewElements(server: Server) {
+		binding.addUserButton.setOnClickListener {
+			navigateFragment<UserLoginFragment>(
+				args = bundleOf(
+					UserLoginFragment.ARG_SERVER_ID to server.id.toString(),
+					UserLoginFragment.ARG_USERNAME to null
+				)
+			)
+		}
+
+		// Other setup related to view elements goes here...
+	}
+
+	private fun startViewModelAuthenticate(server: Server, user: User) {
+		startupViewModel.authenticate(server, user).onEach { state ->
+			when (state) {
+				// Ignored states
+				AuthenticatingState -> Unit
+				AuthenticatedState -> Unit
+				// Actions
+				RequireSignInState -> navigateFragment<UserLoginFragment>(bundleOf(
+					UserLoginFragment.ARG_SERVER_ID to server.id.toString(),
+					UserLoginFragment.ARG_USERNAME to user.name,
+				))
+				// Errors
+				ServerUnavailableState,
+				is ApiClientErrorLoginState -> Toast.makeText(context, R.string.server_connection_failed, Toast.LENGTH_LONG).show()
+
+				is ServerVersionNotSupported -> Toast.makeText(
+					context,
+					getString(
+						R.string.server_issue_outdated_version,
+						state.server.version,
+						ServerRepository.recommendedServerVersion.toString()
+					),
+					Toast.LENGTH_LONG
+				).show()
+			}
+		}.launchIn(lifecycleScope)
 	}
 
 	override fun onDestroyView() {
