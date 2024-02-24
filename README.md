@@ -10,8 +10,6 @@ Modifications from the Official Repository:
 
 <a href="https://ibb.co/dJR10PC"><img src="https://i.ibb.co/WpLqWk8/screenshot1.png" alt="screenshot1" border="0"></a>
 
-<a href="https://ibb.co/4P3Y76J"><img src="https://i.ibb.co/QrtCf2X/screenshot2.png" alt="screenshot2" border="0"></a>
-
 <a href="https://ibb.co/nMgt4fc"><img src="https://i.ibb.co/LdkHB6t/screenshot3.png" alt="screenshot3" border="0"></a>
 
 **Android TV**
