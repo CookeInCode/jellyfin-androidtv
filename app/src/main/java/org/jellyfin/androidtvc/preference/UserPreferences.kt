@@ -87,7 +87,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		/**
 		 * Preferred video player.
 		 */
-		var videoPlayer = enumPreference("video_player", PreferredVideoPlayer.VLC)
+		var videoPlayer = enumPreference("video_player", PreferredVideoPlayer.EXOPLAYER)
 
 		/**
 		 * Change refresh rate to match media when device supports it
