@@ -55,7 +55,7 @@ class UserPreferences(context: Context) : SharedPreferenceStore(
 		/**
 		 * Maximum bitrate in megabit for playback.
 		 */
-		var maxBitrate = stringPreference("pref_max_bitrate", "10")
+		var maxBitrate = stringPreference("pref_max_bitrate", "3")
 
 		/**
 		 * Auto-play next item
