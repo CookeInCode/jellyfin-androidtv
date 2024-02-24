@@ -1,10 +1,8 @@
-A customized version of the popular Android TV client application tailored specifically for Jellyfin users, **users!**
+A customized version of the Jellyfin Android TV client application that aims to simplify the setup process for clients by moving all configuration details, including the server URL and user credentials, to the server administrator's domain. This centralized approach enhances security and reduces complexity for end-users. Server administrators retain full control over access permissions and can approve or deny user access on a permanent or temporary basis, ensuring optimal security and compliance with organizational policies.
 
-Modifications from the Official Repository:
-- Package name has been altered, enabling concurrent installation with the official version.
-- Distinctly sets itself apart from the official version.
-- Streamlined many elements of the UI to create a less cluttered and more inviting appearance.
-- Automatic population of a default server addresses during setup (Android Studio required).
+Other significant alterations from the official repository comprise:
+- The package name has been changed.
+- Various aspects of the user interface have been streamlined to foster a cleaner and more appealing appearance.
 
 **Firestick**
 
